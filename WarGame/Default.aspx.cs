@@ -88,26 +88,26 @@ namespace WarGame
 
         protected void playGameButton_Click(object sender, EventArgs e)
         {
-            CardGameWar WarGame = new CardGameWar("Player 1", "Player 2", WinType.EmptyHand);
-            WarGame.ShuffleAndDeal(DealMethod.Even, 2);
+            var warGame = new CardGameWar("Player 1", "Player 2", WinType.EmptyHand);
+            warGame.ShuffleAndDeal(DealMethod.Even, 2);
 
             resultLabel.Text = string.Empty;
             resultLabel.Text = Print.PrintHeader("Battle Starts");
 
-            WarGame.SetStartTime();
+            warGame.SetStartTime();
 
-            while (WarGame.ContinueGame())
+            while (warGame.ContinueGame())
             {
-                WarGame.PlayRound();
-                WarGame.DecideRoundWinner();
+                warGame.PlayRound();
+                warGame.DecideRoundWinner();
 
-                resultLabel.Text += Print.PrintRoundResult(WarGame);
+                resultLabel.Text += Print.PrintRoundResult(warGame);
             }
 
-            WarGame.SetEndTime();
-            WarGame.FinalWinner();
+            warGame.SetEndTime();
+            warGame.FinalWinner();
 
-            resultLabel.Text += Print.PrintFinalWinner(WarGame);
+            resultLabel.Text += Print.PrintFinalWinner(warGame);
         }
     }
 }
